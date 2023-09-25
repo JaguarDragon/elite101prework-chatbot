@@ -1,0 +1,69 @@
+# Welcome the user
+print("Welcome to our chatbot!")
+
+while True:
+    # Collect the user's name and age
+    name = input("What's your name? ")
+    age = int(input("How old are you? "))
+
+    # Ask the user how the chatbot can help them
+    print("Hello,", name + "! How can I assist you today?")
+
+    # Display the menu of options
+    print("1. Calculate Taxes")
+    print("2. Money Transfers")
+    print("3. Exit")
+
+    # Allow the user to choose from the menu
+    choice = int(input("Enter the number corresponding to your desired option: "))
+
+    # Handle the user's choice
+    if choice == 1:
+        # Function to calculate tax amount
+        def calculate_tax(income):
+            if income <= 9875:
+                tax = income * 0.10
+            elif income <= 40125:
+                tax = 9875 * 0.10 + (income - 9875) * 0.12
+            elif income <= 85525:
+                tax = 9875 * 0.10 + (40125 - 9875) * 0.12 + (income - 40125) * 0.22
+            elif income <= 163300:
+                tax = 9875 * 0.10 + (40125 - 9875) * 0.12 + (85525 - 40125) * 0.22 + (income - 85525) * 0.24
+            elif income <= 207350:
+                tax = 9875 * 0.10 + (40125 - 9875) * 0.12 + (85525 - 40125) * 0.22 + (163300 - 85525) * 0.24 + (income - 163300) * 0.32
+            elif income <= 518400:
+                tax = 9875 * 0.10 + (40125 - 9875) * 0.12 + (85525 - 40125) * 0.22 + (163300 - 85525) * 0.24 + (207350 - 163300) * 0.32 + (income - 207350) * 0.35
+            else:
+                tax = 9875 * 0.10 + (40125 - 9875) * 0.12 + (85525 - 40125) * 0.22 + (163300 - 85525) * 0.24 + (207350 - 163300) * 0.32 + (518400 - 207350) * 0.35 + (income - 518400) * 0.37
+            return tax
+
+        # Get user input for income
+        income = float(input("Enter your annual income: "))
+
+        # Calculate tax
+        tax_amount = calculate_tax(income)
+
+        # Print tax result
+        print("The tax amount for an income of $", income, "is $", tax_amount)
+
+    elif choice == 2:
+        # Function to perform money transfer
+        def perform_transfer(amount):
+            if amount <= 0:
+                print("Invalid amount. Please enter a positive value.")
+            else:
+                print("Transfer of $", amount, "successfully completed.")
+
+        # Get user input for transfer amount
+        transfer_amount = float(input("Enter the amount to transfer: "))
+        # Perform money transfer
+        perform_transfer(transfer_amount)
+
+    elif choice == 3:
+        print("Thank you for using our chatbot. Goodbye!")
+        break  # Exit the loop and end the program
+
+    else:
+        print("Invalid choice. Please try again.")
+
+    print()  # Add an empty line for better readability
